@@ -1,0 +1,13 @@
+# macOS system files
+.DS_Store
+.localized
+
+# VSCode settings
+.vscode/
+
+# macOS debug symbol files
+*.dSYM/
+
+# Compiled binaries
+*.out
+*.exe

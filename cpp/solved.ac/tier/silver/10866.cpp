@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 struct Node{
@@ -71,8 +72,8 @@ struct Deque{
         return size;
     }
 
-    bool Empty(){
-        return (size) ? false : true;
+    int Empty(){
+        return (!size) ?  1: 0;
     }
 
     int Front(){
@@ -101,7 +102,7 @@ int main(){
 
     int N;
     string S;
-    string out;
+    ostringstream out;
 
     Deque D;
 
@@ -114,38 +115,41 @@ int main(){
                         switch(S[5]){
                             case 'f':
                                 cin >> N;
-                                D.push_back(N);    
+                                D.push_front(N);    
                                 break;                          
                             case 'b':
                                 cin >> N;
                                 D.push_back(N);
                                 break;
                         }
+                        break;
                     case 'o':
                         switch(S[4]){
                             case 'f':
-                                out += to_string(D.pop_front()) + "\n";
+                                out << to_string(D.pop_front()) << "\n";
                                 break;
                             case 'b':
-                                out += to_string(D.pop_back()) + "\n";
+                                out << to_string(D.pop_back()) << "\n";
                                 break;
                         }
+                        break;
                 }
+                break;
             case 's':
-                out += to_string(D.Size()) + "\n";
+                out << to_string(D.Size()) << "\n";
                 break;
             case 'e':
-                out += to_string(D.Empty()) + "\n";
+                out << to_string(D.Empty()) << "\n";
                 break;
             case 'f':
-                out += to_string(D.Front()) + "\n";
+                out << to_string(D.Front()) << "\n";
                 break;
             case 'b':
-                out += to_string(D.Back()) + "\n";
+                out << to_string(D.Back()) << "\n";
                 break;
         }
     }
-    cout << out;
+    cout << out.str();
 
     return 0;
 }

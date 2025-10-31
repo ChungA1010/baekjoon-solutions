@@ -2,51 +2,49 @@
 #include <vector>
 using namespace std;
 
-struct Node;
-
-struct Edge{
-    Node* edge1;
-    Node* edge2;
-};
-
-struct Node{
-    int value;
-    vector<Edge*> edges;
-};
-
 struct Graph{
-    vector<Node> nodes;
+    int n;
+    vector<vector<int>> adj;
+    vector<bool> visited;
+    int virus;
 
     Graph(int N){
-        nodes.resize(N);
-        for(int i = 0; i<N; i++){
-            nodes[i].value = i+1;
+        n = N;
+        adj.resize(N + 1);
+        visited.resize(N + 1, false);
+        virus = 0;
+    }
+
+    void Connect(int a, int b){
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+
+    void DFS(int node){
+        visited[node] = true;
+
+        for(int next : adj[node]){
+            if(visited[next] == false){
+                virus++;
+                DFS(next);
+            }
         }
-    }
-
-    void Connect(int n1, int n2){
-        Edge* e = new Edge;
-        e->edge1 = &nodes[n1];
-        e->edge2 = &nodes[n2];
-        nodes[n1].edges.push_back(e);
-        nodes[n2].edges.push_back(e);
-    }
-
-    void find(int n){
-        if()
     }
 };
 
 int main(){
-    int C, E;
-    cin >> C >> E;
+    int C, T;
+    cin >> C >> T;
 
-
+    Graph G(C);
     int a, b;
 
-    while(E--){
+    while(T--){
         cin >> a >> b;
+        G.Connect(a, b);
     }
+    G.DFS(1);
+    cout << G.virus << '\n';
 
     return 0;
 }

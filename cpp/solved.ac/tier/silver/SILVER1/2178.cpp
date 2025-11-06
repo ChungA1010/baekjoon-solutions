@@ -11,7 +11,7 @@ int main(){
     cin.tie(nullptr);
 
     int N, M;
-    cin >> N >> M; // N=행, M=열
+    cin >> N >> M;
 
     vector<vector<int>> maze(N, vector<int>(M));
     vector<vector<bool>> visited(N, vector<bool>(M, false));
@@ -38,7 +38,7 @@ int main(){
             if(nx >= 0 && ny >= 0 && nx < N && ny < M){
                 if(maze[nx][ny] == 1 && !visited[nx][ny]){
                     visited[nx][ny] = true;
-                    maze[nx][ny] = maze[x][y] + 1; // 이전 거리 +1
+                    maze[nx][ny] = maze[x][y] + 1; 
                     q.push({nx, ny});
                 }
             }

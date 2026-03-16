@@ -10,6 +10,7 @@ int main(){
     while(T--){
         vector<int> board;
         for(int i = 0; i<6; i++) cin >> board[i];
+        
     }
 
     return 0;
